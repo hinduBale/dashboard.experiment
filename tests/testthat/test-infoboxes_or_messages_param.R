@@ -131,7 +131,7 @@ patrick::with_parameters_test_that("InfoBoxes rendered in Data Summary >> ", {
                           msg_param_1 = temporal_year_error,
                           msg_param_2 = temporal_month_error,
                           msg_param_3 = temporal_day_error),
-    bison_taxonomic = list(sample_size_param = "200",
+    bison_taxonomIc = list(sample_size_param = "200",
                           dataset_xpath_param = "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[5]/label/span",
                           subtab_id_param = "data_summary_ui_1-diagnostics",
                           info_box_text_param_1 = "of Scientific Name",
