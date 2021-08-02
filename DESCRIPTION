@@ -27,9 +27,13 @@ Imports:
     formattable,
     bdutilities.app (>= 0.0.1),
     pkgload,
-    shinyBS
+    shinyBS,
+    patrick
+Suggests:
+    patrick
 Remotes: 
     bd-r/bdutilities.app
+    google/patrick
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1

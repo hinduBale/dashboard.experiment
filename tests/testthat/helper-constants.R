@@ -1,0 +1,24 @@
+helper_app_url <- "http://127.0.0.1:3672"
+helper_remoteServerAddr <- "localhost"
+helper_port <- 4444
+helper_browser <- "chrome"
+
+helper_gbif_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[1]/label/span"
+helper_bison_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[5]/label/span"
+
+taxonomic_family_error <- 'No appropriate Column found with family data.'
+taxonomic_kingdom_error <- 'No appropriate Column found with kingdom data.'
+taxonomic_name_error <- 'No appropriate Column found with scientificName data.'
+
+temporal_day_error <- 'No appropriate Column found with Day data.'
+temporal_month_error <- 'No appropriate Column found with Month data.'
+temporal_year_error <- 'No appropriate Column found with year data.'
+
+spatial_locality_error <- 'No appropriate Column found with locality data.'
+spatial_country_error <- 'No appropriate Column found with country names in it.'
+spatial_geo_error <- 'Random String' #Ask Rahul C. about it
+
+gauge1_error_msg <- 'Random String' #Ask Rahul C. about it
+gauge2_error_msg <- 'No appropriate Column with Date data present in Database!'
+gauge3_error_msg <- 'No appropriate Column found with occurance remark data/link'
+gauge4_error_msg <- 'No appropriate Column found with basisOfRecord data'
