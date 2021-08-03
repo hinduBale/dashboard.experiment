@@ -1,10 +1,15 @@
-helper_app_url <- "http://127.0.0.1:3672"
+helper_app_url <- "http://127.0.0.1:6688"
 helper_remoteServerAddr <- "localhost"
 helper_port <- 4444
 helper_browser <- "chrome"
 
 helper_gbif_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[1]/label/span"
 helper_bison_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[5]/label/span"
+helper_idigbio_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[2]/label/span"
+helper_ecoengine_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[3]/label/span"
+helper_vertnet_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[4]/label/span"
+helper_inaturalist_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[6]/label/span"
+helper_ala_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[7]/label/span"
 
 taxonomic_family_error <- 'No appropriate Column found with family data.'
 taxonomic_kingdom_error <- 'No appropriate Column found with kingdom data.'
