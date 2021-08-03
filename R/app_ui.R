@@ -20,37 +20,33 @@ app_ui <- function(request) {
         menuItem(
           "Data Input",
           tabName = "dataInputTab",
-          icon = icon("database")
+          icon = icon("download")
         ),
         menuItem(
-          "Data Overview",
-          icon = icon("eye"),
-          menuSubItem(
-            "Data Summary",
-            tabName = "dataSummary"
-          ),
-          menuSubItem(
-            "Missing Data Overview",
-            tabName = "missing_overview"
-          )
+          "Data Summary",
+          tabName = "dataSummary",
+          icon = icon("eye")
+        ),
+        menuItem(
+          "Missing Data",
+          tabName = "missing_overview",
+          icon = icon("question")
         ),
         menuItem(
           "Spatial",
           tabName = "spatial_tab",
-          icon = icon("eye")
+          icon = icon("globe")
         ),
         menuItem(
           "Taxonomic",
           tabName = "taxonomic_tab",
-          icon = icon("eye")
+          icon = icon("paw")
         ),
         menuItem(
           "Temporal",
           tabName = "temporal_tab",
-          icon = icon("eye")
+          icon = icon("stopwatch")
         )
-        
-        
       )
     ),
     dashboardBody(
@@ -108,7 +104,7 @@ golem_add_external_resources <- function(){
     favicon(),
     bundle_resources(
       path = app_sys('app/www'),
-      app_title = 'dashboard.experiment'
+      app_title = 'bddashboard'
     ),
     tags$link(rel = "stylesheet", type = "text/css", href = "www/custom.css")
     # Add here other external resources
