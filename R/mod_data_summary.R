@@ -40,15 +40,15 @@ mod_data_summary_ui <- function(id){
         introBox(
           bsButton(ns("patients"), 
                    label = "Spatial", 
-                   icon = icon("user"), 
+                   icon = icon("globe"), 
                    style = "success bsButton"),
           bsButton(ns("antimicrobials"), 
                    label = "Temporal", 
-                   icon = icon("spinner", class = "spinner-box"), 
+                   icon = icon("stopwatch"), 
                    style = "success bsButton"),
           bsButton(ns("diagnostics"), 
                    label = "Taxonomic", 
-                   icon = icon("flask", class = "flask-box"), 
+                   icon = icon("paw"), 
                    style = "success bsButton")
         )
       )
@@ -184,7 +184,7 @@ mod_data_summary_server <- function(input, output, session, dataset){
     )
     shinydashboard::valueBox(
       value = nrow(dataset()),
-      subtitle = "# of Records",
+      subtitle = "# OF RECORDS",
       icon = icon("compass"),
       color = "aqua",
       width = 1
@@ -201,7 +201,7 @@ mod_data_summary_server <- function(input, output, session, dataset){
     )
     shinydashboard::valueBox(
       value = nrow(unique(dataset()["name"])),
-      subtitle = "# of Taxa",
+      subtitle = "# OF TAXANS",
       icon = icon("file-signature"),
       color = "blue",
       width = 1
@@ -214,7 +214,7 @@ mod_data_summary_server <- function(input, output, session, dataset){
     )
     shinydashboard::valueBox(
       value = length(dataset()),
-      subtitle = "# of Attributes",
+      subtitle = "# OF ATTRIBUTES",
       icon = icon("area-chart"),
       color = "light-blue",
       width = 1
@@ -274,6 +274,10 @@ mod_data_summary_server <- function(input, output, session, dataset){
   callModule(mod_leaflet_server, "leaflet_ui_1", data_reactive,  dataset)
 
   output$map_coordinates <- shinydashboard::renderValueBox({
+    validate(
+      need(length(dataset())>0, 'Please upload/download a dataset first')
+    )
+    
     dat <- dataset()
     if("verbatimLatitude" %in% colnames(dat))
     {
@@ -286,11 +290,13 @@ mod_data_summary_server <- function(input, output, session, dataset){
     {
       longitudeName <- "verbatimLongitude"
     }else {
-      longitudeName <- "decimalLatitude"
+      longitudeName <- "decimalLongitude"
     }
+    
     validate(
-      need(length(dataset())>0, 'Please upload/download a dataset first')
+      need(longitudeName %in% colnames(dat), 'No appropriate Column found.')
     )
+    
     latitude <- nrow(
       (
         na.omit(
@@ -427,7 +433,7 @@ mod_data_summary_server <- function(input, output, session, dataset){
           )
         )
       ),
-      subtitle = "# of Years",
+      subtitle = "# of Months",
       icon = icon("street-view"),
       color = "navy",
       width = 4
@@ -535,11 +541,7 @@ mod_data_summary_server <- function(input, output, session, dataset){
       width = 4
     )
   })
-  
 
-  
-  
-  
   
   callModule(mod_DT_server, "DT_ui_1", data_reactive, c(
     "countryCode",
@@ -549,10 +551,3 @@ mod_data_summary_server <- function(input, output, session, dataset){
   
  
 }
-    
-## To be copied in the UI
-# mod_data_summary_ui("data_summary_ui_1")
-    
-## To be copied in the server
-# callModule(mod_data_summary_server, "data_summary_ui_1")
- 
