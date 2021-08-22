@@ -1,4 +1,4 @@
-helper_app_url <- "http://127.0.0.1:7154"
+helper_app_url <- "http://127.0.0.1:4185"
 helper_remoteServerAddr <- "localhost"
 helper_port <- 4444
 helper_browser <- "chrome"
@@ -10,6 +10,12 @@ helper_ecoengine_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1
 helper_vertnet_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[4]/label/span"
 helper_inaturalist_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[6]/label/span"
 helper_ala_xpath <- "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[7]/label/span"
+
+helper_downloads_path <- "C://Users//Rahul//Downloads//"
+helper_table_download_file_name <- "dashboard.experimentbddashboard Experiment"
+helper_pdf_download_xpath <- "/html/body/div[1]/div/section/div/div[4]/div/div[2]/div[2]/div/div/div[1]/button[4]/span"
+helper_csv_download_xapth <- "/html/body/div[1]/div/section/div/div[4]/div/div[2]/div[2]/div/div/div[1]/button[2]/span"
+helper_xlsx_download_xpath <- "/html/body/div[1]/div/section/div/div[4]/div/div[2]/div[2]/div/div/div[1]/button[3]/span"
 
 taxonomic_family_error <- 'No appropriate Column found with family data.'
 taxonomic_kingdom_error <- 'No appropriate Column found with kingdom data.'
