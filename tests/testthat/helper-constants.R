@@ -1,4 +1,4 @@
-helper_app_url <- "http://127.0.0.1:6688"
+helper_app_url <- "http://127.0.0.1:7154"
 helper_remoteServerAddr <- "localhost"
 helper_port <- 4444
 helper_browser <- "chrome"

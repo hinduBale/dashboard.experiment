@@ -1,3 +1,6 @@
+## To test this file, type:
+# testthat::test_file("./tests/testthat/test-infoboxes_or_messages_param.R")
+
 context("infoboxes_appears")
 
 library("testthat")
