@@ -43,6 +43,7 @@ patrick::with_parameters_test_that("Table downloads: ", {
   helper_close_selector_screen(connectionObj)
   
   ## Download the required format
+  if()
   download_button_class <- sprintf("btn btn-default buttons-%s buttons-html5", download_extension_param)
   download_button <- connectionObj$findElement(using = "class",
                                                value = download_button_class)
