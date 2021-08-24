@@ -15,6 +15,43 @@ helper_navigate_missing_data_tab <- function(connectionObj, sec_wait_after_overv
   missingDataTab$clickElement()
 }
 
+## Navigate to data summary tab
+helper_navigate_data_summary_tab <- function(connectionObj, sec_wait_after_overview_click) {
+  helper_navigate_data_overview_tab(connectionObj)
+  Sys.sleep(sec_wait_after_overview_click)
+  
+  dataSummaryTab <- connectionObj$findElement(using = "xpath",
+                                              value = "/html/body/div[1]/aside/section/ul/li[2]/ul/li[1]/a")
+  dataSummaryTab$clickElement()
+  Sys.sleep(5)
+}
+
+## Navigate sub-tabs inside the data summary tabs
+helper_navigate_subtabs <- function(connectionObj, tabName_param) {
+  
+  ## Open one of Spatial / Temporal / Taxonomic SubTab
+  if(tabName_param == "spatial") {
+    subtab_id_param = "data_summary_ui_1-patients"
+  } else if(tabName_param == "temporal") {
+    subtab_id_param = "data_summary_ui_1-antimicrobials"
+  } else if(tabName_param == "taxonomic") {
+    subtab_id_param = "data_summary_ui_1-diagnostics"
+  }
+  
+  subTabButton <- connectionObj$findElement(using = "id",
+                                            value = subtab_id_param)
+  subTabButton$clickElement()
+  Sys.sleep(5)
+}
+
+## Navigate to the temporal tab
+helper_navigate_temporal_tab <- function(connectionObj, sec_wait_after_temporal_click) {
+  temporalTab <- connectionObj$findElement(using = "xpath",
+                                           value = "/html/body/div[1]/aside/section/ul/li[5]/a/span")
+  temporalTab$clickElement()
+  Sys.sleep(sec_wait_after_temporal_click)
+}
+ 
 helper_navigate_spatial_subtab <- function(connectionObj, sec_wait_after_spatial_click) {
   spatialTab <- connectionObj$findElement(using = "xpath",
                                           value = "/html/body/div[1]/aside/section/ul/li[3]/a")

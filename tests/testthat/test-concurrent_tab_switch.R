@@ -18,7 +18,7 @@ connectionObj$open(silent = TRUE)
 patrick::with_parameters_test_that("Concurrent Tab Switches Take Place: ", {
   
   sec_wait_after_upload_click = 15
-  sec_wait_after_upload_click = 2
+  sec_wait_after_overview_click = 2
   
   # Prepare dataset for test
   helper_initialize_tests_default(connectionObj, helper_app_url, sample_size_param, 
@@ -26,19 +26,21 @@ patrick::with_parameters_test_that("Concurrent Tab Switches Take Place: ", {
   Sys.sleep(8)
   
   # Navigate to the test site: Data Overview >> Data Summary
-  helper_navigate_missing_data_tab(sec_wait_after_upload_click)
+  helper_navigate_missing_data_tab(connectionObj, sec_wait_after_overview_click)
   Sys.sleep(5)
   
   ## Business Logic
+  
+  ##spatial
   isSpatialUpperSelected <- FALSE
   isSpatialLowerSelected <- FALSE
   spatialUpperTab <- connectionObj$findElement(using = "xpath",
-                                               value = "/html/body/div[1]/div/section/div/div[3]/div/div[2]/div/ul/li[1]")
+                                               value = helper_spatial_upper_tab_xpath)
   spatialUpperTabLink <- spatialUpperTab$findChildElements(using = "css selector",
                                                            value = "a")
   
   spatialLowerTab <- connectionObj$findElement(using = "xpath",
-                                               value = "/html/body/div[1]/div/section/div/div[3]/div/div[3]/div/ul/li[1]")
+                                               value = helper_spatial_lower_tab_xpath)
   spatialLowerTabLink <- spatialLowerTab$findChildElements(using = "css selector",
                                                            value = "a")
   if(spatialLowerTabLink[[1]]$getElementAttribute("aria-selected") == "true") {
@@ -54,12 +56,12 @@ patrick::with_parameters_test_that("Concurrent Tab Switches Take Place: ", {
   isTemporalLowerSelected <- FALSE
 
   temporalUpperTab <- connectionObj$findElement(using = "xpath",
-                                                value = "/html/body/div[1]/div/section/div/div[3]/div/div[2]/div/ul/li[2]")
+                                                value = helper_temporal_upper_tab_xpath)
   temporalUpperTabLink <- temporalUpperTab$findChildElements(using = "css selector",
                                                              value = "a")
 
   temporalLowerTab <- connectionObj$findElement(using = "xpath",
-                                                value = "/html/body/div[1]/div/section/div/div[3]/div/div[3]/div/ul/li[2]")
+                                                value = helper_temporal_lower_tab_xpath)
   temporalLowerTabLink <- temporalLowerTab$findChildElements(using = "css selector",
                                                             value = "a")
   temporalLowerTab$clickElement()
@@ -67,30 +69,17 @@ patrick::with_parameters_test_that("Concurrent Tab Switches Take Place: ", {
   lapply(temporalLowerTabLink, function(x){if(x$getElementAttribute("aria-selected")[[1]] == "true") isTemporalLowerSelected <<- TRUE})
   lapply(temporalUpperTabLink, function(x){if(x$getElementAttribute("aria-selected")[[1]] == "true") isTemporalUpperSelected <<- TRUE})
 
-
-  # if(temporalLowerTabLink[[1]]$getElementAttribute("aria-selected") == "true") {
-  #   print("Yo!!")
-  #   isTemporalLowerSelected <- TRUE
-  # }
-  # 
-  # if(temporalUpperTabLink[[1]]$getElementAttribute("aria-selected") == "true") {
-  #   isTemporalUpperSelected <- TRUE
-  # }
-  # 
-  # print(isTemporalLowerSelected)
-  # print(isTemporalUpperSelected)
-
   # ##taxonomic
   isTaxonomicUpperSelected <- FALSE
   isTaxonomicLowerSelected <- FALSE
 
   taxonomicUpperTab <- connectionObj$findElement(using = "xpath",
-                                                 value = "/html/body/div[1]/div/section/div/div[3]/div/div[2]/div/ul/li[3]")
+                                                 value = helper_taxonomic_upper_tab_xpath)
   taxonomicUpperTabLink <- taxonomicUpperTab$findChildElements(using = "css selector",
                                                                value = "a")
 
   taxonomicLowerTab <- connectionObj$findElement(using = "xpath",
-                                                 value = "/html/body/div[1]/div/section/div/div[3]/div/div[3]/div/ul/li[3]")
+                                                 value = helper_taxonomic_lower_tab_xpath)
   taxonomicLowerTabLink <- taxonomicLowerTab$findChildElements(using = "css selector",
                                                                value = "a")
   taxonomicUpperTab$clickElement()

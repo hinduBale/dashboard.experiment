@@ -15,50 +15,19 @@ connectionObj <- RSelenium::remoteDriver(
 
 connectionObj$open(silent = TRUE)
 patrick::with_parameters_test_that("Gauge Plots are rendered: ", {
-  connectionObj$navigate(helper_app_url)
-  Sys.sleep(8)
+  sec_wait_after_upload_click = 15
+  sec_wait_after_overview_click = 2
   
-  ## Reduce sample size
-  sampleSize <- connectionObj$findElement(using = "id",
-                                          value = "bdFileInput-recordSize")
-  sampleSize$clearElement()
-  sampleSize$sendKeysToElement(list(sample_size_param))
-  Sys.sleep(2)
-  
-  ## Change search term
-  searchTerm <- connectionObj$findElement(using = "id",
-                                          value = "bdFileInput-scientificName")
-  searchTerm$clearElement()
-  searchTerm$sendKeysToElement(list(search_term_param))
-  
-  ## Select online dataset
-  datasetButton <- connectionObj$findElement(using = "xpath",
-                                             value = dataset_xpath_param)
-  datasetButton$clickElement()
-  Sys.sleep(2)
-  
-  ## Click on the queryDatabase button
-  uploadButton <- connectionObj$findElement(using = "id",
-                                            value = "bdFileInput-queryDatabase")
-  uploadButton$clickElement()
-  Sys.sleep(15)
-  
-  ## Click on the Perform Header Cleaning Button
-  darwianizeButton <- connectionObj$findElement(using = "id",
-                                                value = "darwinize-darwinizeButton")
-  darwianizeButton$clickElement()
+  ## Prepare dataset for test
+  helper_initialize_tests_default(connectionObj, helper_app_url, sample_size_param, 
+                                  search_term_param, dataset_param, sec_wait_after_upload_click)
   Sys.sleep(8)
   
   ## Data Overview >> Data Summary
-  dataOverviewTab <- connectionObj$findElement(using = "xpath",
-                                               value = "/html/body/div[1]/aside/section/ul/li[2]/a/span")
-  dataOverviewTab$clickElement()
-  Sys.sleep(2)
-  
-  missingDataTab <- connectionObj$findElement(using = "xpath",
-                                              value = "/html/body/div[1]/aside/section/ul/li[2]/ul/li[2]/a")
-  missingDataTab$clickElement()
+  helper_navigate_missing_data_tab(connectionObj, sec_wait_after_overview_click)
   Sys.sleep(5)
+  
+  ## Business Logic 
   
   isGauge1 <- FALSE
   isGauge2 <- FALSE
@@ -103,17 +72,11 @@ patrick::with_parameters_test_that("Gauge Plots are rendered: ", {
   cases(
     gbif = list(sample_size_param = "200",
                 search_term_param = "Puma concolor",
-                dataset_xpath_param = "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[1]/label/span"),
+                dataset_param = "gbif",
+                last_test_param = FALSE),
     bison = list(sample_size_param = "200",
                  search_term_param = "Puma concolor",
-                 dataset_xpath_param = "/html/body/div[1]/div/section/div/div[1]/div[1]/div[1]/div/div/div[1]/div[5]/div/div[5]/label/span")
+                 dataset_param = "bison",
+                 last_test_param = TRUE)
   )
 )
-
-## Make tests supplier-independent
-## Go through the gauge-generation code
-##Suggested Parameters:
-## 1. Record Filter: Without Cordinates
-## Step1. Normal condition
-## Step2. Unexpected scenario with expected behaviour (Abnormal behavior)
-## Step3. Very unique (Edge) cases (Generate ideas)
